@@ -47,11 +47,11 @@ const Dashboard = () => {
     <section class="relative flex flex-col items-center justify-center text-center py-24 px-6 
       bg-gradient-to-b from-black via-[#0a0a0f] to-[#111827] overflow-hidden">
 
-    <span class="text-xs tracking-widest bg-gray-800/70 px-5 py-1 rounded-full mb-6">
+    <span class="text-xs tracking-widest bg-gray-300 px-5 py-1 rounded-full mb-6">
       JOIN THE SPEED REVOLUTION
     </span>
 
-    <h1 class="text-4xl md:text-6xl font-bold leading-tight">
+    <h1 class="text-4xl md:text-6xl  text-white font-bold leading-tight">
       Manage your team projects
     </h1>
 
@@ -69,30 +69,29 @@ const Dashboard = () => {
     <div class="absolute w-[500px] h-[500px] bg-purple-700/20 blur-[120px] rounded-full bottom-0"></div>
 
   </section>
+    <h1 className=" text-center m-10 text-3xl md:text-5xl font-semibold leading-tight">
+          Create Your Own<br /> Workspaces
+    </h1>
 
       {/* HEADER */}
-      <div className="flex justify-between items-center mb-10">
-        <h1 className="text-3xl font-semibold">Projects</h1>
+    <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8 mb-6">
 
-        <button
+        {/* ADD NEW */}
+        <div
           onClick={() => setShowModal(true)}
-          className="bg-blue-600 text-white px-5 py-2 rounded-md"
+          className="bg-gray-200 border border-dashed border-black rounded-2xl p-6 flex flex-col items-center justify-center cursor-pointer"
         >
-          + New Project
-        </button>
-      </div>
-
-      {/* PROJECT GRID */}
-      <div className="grid md:grid-cols-3 gap-6">
-
+          <div className="text-2xl mb-2">+</div>
+          <button>New Project</button>
+        </div>
         {projects.map((project) => (
           <div
             key={project._id}
             onClick={() => navigate(`/board/${project._id}`)}
-            className="bg-white p-6 rounded-xl border hover:shadow-md cursor-pointer"
+            className="bg-blue-500 rounded-2xl p-6 cursor-pointer hover:bg-blue-400"
           >
-            <h2 className="text-xl font-semibold">{project.name}</h2>
-            <p className="text-gray-500 text-sm mt-2">
+            <h2 className="text-white text-xl font-bold">{project.name}</h2>
+            <p className="text-white mt-2">
               Open board →
             </p>
           </div>

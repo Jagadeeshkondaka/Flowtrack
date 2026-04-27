@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import CircularGallery from "../components/CircularGallery";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -63,7 +64,10 @@ const Home = () => {
         </div>
 
        </div>
-             <section className="bg-gray-100 py-16 overflow-hidden">
+       <section className="bg-gray-100 py-16 overflow-hidden">
+           <div className="flex justify-center mb-16">
+            <CircularGallery />
+          </div>
 
         <div className="max-w-6xl mx-auto text-center mb-10">
           <h2 className="text-4xl font-bold">
