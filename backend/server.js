@@ -8,6 +8,7 @@ import workspaceRoutes from "./routes/workspaceRoutes.js";
 import projectRoutes from "./routes/projectRoutes.js";
 import taskRoutes from "./routes/taskRoutes.js";
 import commentRoutes from "./routes/commentRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 
 
@@ -23,6 +24,7 @@ app.use("/api/workspaces", workspaceRoutes);
 app.use("/api/projects", projectRoutes);
 app.use("/api/tasks", taskRoutes);
 app.use("/api/comments", commentRoutes);
+app.use("/api/users", userRoutes);
 
 // test route
 app.get("/", (req, res) => {

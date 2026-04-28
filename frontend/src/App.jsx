@@ -6,6 +6,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Board from "./components/Board";
 import Workspace from "./pages/Workspace";
+import About from "./pages/Aboutus";
 
 import PrivateRoute from "./components/PrivateRoute";
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/workspace" element={<Workspace />} />
         <Route path="/projects/:workspaceId" element={<Dashboard />} />
         <Route path="/board/:projectId" element={<Board />} />
+        <Route path="/about" element={<About/>}/>
 
         <Route
           path="/dashboard"

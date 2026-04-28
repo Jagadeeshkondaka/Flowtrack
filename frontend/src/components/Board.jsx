@@ -16,8 +16,6 @@ const Board = () => {
   const [tasks, setTasks] = useState([]);
   const [showTaskModal, setShowTaskModal] = useState(false);
 
-  // 🔥 Fetch tasks
-  useEffect(() => {
     const fetchTasks = async () => {
       try {
         const res = await API.get(`/tasks/${projectId}`);
@@ -27,9 +25,9 @@ const Board = () => {
       }
     };
 
+    useEffect(() => {
     fetchTasks();
   }, [projectId]);
-
   // 🔥 Drag update
   const handleDragEnd = async (event) => {
     const { active, over } = event;
@@ -117,6 +115,7 @@ const Board = () => {
               key={status}
               status={status}
               tasks={tasks}
+              refreshTasks={fetchTasks}
             />
           ))}
         </div>

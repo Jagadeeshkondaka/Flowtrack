@@ -8,7 +8,6 @@ const CommentsPage = ({ tasks }) => {
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // 🔥 Fetch comments
   useEffect(() => {
     if (!selectedTaskId) {
       setComments([]);
@@ -30,7 +29,6 @@ const CommentsPage = ({ tasks }) => {
     fetchComments();
   }, [selectedTaskId]);
 
-  // 🔥 Add comment
   const handleAddComment = async () => {
     if (!text.trim() || !selectedTaskId) return;
 
@@ -48,27 +46,30 @@ const CommentsPage = ({ tasks }) => {
   };
 
   return (
-    <div className="px-16 py-20 space-y-20">
+    <div className="px-16 py-20 space-y-20 bg-[#0f172a] min-h-screen text-white">
 
-      {/* 🔥 HERO SECTION */}
+      {/* HERO */}
       <div className="grid md:grid-cols-2 items-center gap-10">
 
-        {/* LEFT SIDE */}
         <div>
           <h1 className="text-5xl font-bold mb-4">
             Task Comments Dashboard
           </h1>
 
-          <p className="text-gray-600 mb-6">
+          <p className="text-gray-400 mb-6">
             Manage discussions, track updates, and collaborate with your team.
-            <br />
-            Select a task and start interacting instantly.
           </p>
 
           <select
             value={selectedTaskId}
             onChange={(e) => setSelectedTaskId(e.target.value)}
-            className="w-2/3 border p-3 bg-blue-600 text-white rounded-lg shadow-sm"
+            className="
+              w-2/3 p-3 rounded-lg
+              bg-[#1e293b]
+              border border-white/10
+              text-white
+              focus:outline-none focus:ring-2 focus:ring-blue-500
+            "
           >
             <option value="">Select Task</option>
             {tasks.map((task) => (
@@ -79,25 +80,30 @@ const CommentsPage = ({ tasks }) => {
           </select>
         </div>
 
-        {/* RIGHT SIDE - FALLING TEXT */}
-        <div className="h-[260px] bg-gray-200 m-6 flex items-center justify-center rounded-xl overflow-hidden">
+        {/* Falling text */}
+        <div className="h-[260px] bg-[#1e293b]/70 rounded-xl flex items-center justify-center backdrop-blur-md border border-white/10">
           <FallingText
             text={`Collaborate faster Share ideas Track progress Build together`}
             highlightWords={["Collaborate", "Track", "Build"]}
             trigger="hover"
-            gravity={0.4}   // 🔥 slower & controlled
+            gravity={0.4}
             fontSize="1.6rem"
           />
         </div>
       </div>
 
-      {/* 🔥 COMMENT SECTION */}
+      {/* COMMENT SECTION */}
       {selectedTaskId && (
         <div className="grid md:grid-cols-2 gap-6">
 
-          {/* ✏️ WRITE COMMENT BOX */}
-          <div className="bg-gray-300 p-6 rounded-xl shadow-md">
-            <h2 className="text-lg font-semibold mb-4">
+          {/* WRITE */}
+          <div className="
+            bg-[#1e293b]/70
+            backdrop-blur-md
+            border border-white/10
+            p-6 rounded-xl shadow-lg
+          ">
+            <h2 className="text-lg font-semibold mb-4 text-blue-400">
               Write a Comment
             </h2>
 
@@ -105,40 +111,63 @@ const CommentsPage = ({ tasks }) => {
               value={text}
               onChange={(e) => setText(e.target.value)}
               placeholder="Write your thoughts..."
-              className="w-full border bg-gray-200 p-3 rounded-lg h-[120px]"
+              className="
+                w-full p-3 rounded-lg h-[120px]
+                bg-[#0f172a]
+                border border-white/10
+                text-white
+                focus:outline-none focus:ring-2 focus:ring-blue-500
+              "
             />
 
             <button
               onClick={handleAddComment}
-              className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+              className="
+                mt-4 w-full
+                bg-gradient-to-r from-blue-500 to-indigo-500
+                hover:scale-[1.02]
+                text-white py-2 rounded-lg
+                transition
+              "
             >
               Post Comment
             </button>
           </div>
 
-          {/* 💬 SHOW COMMENTS BOX */}
-          <div className="bg-gray-300 p-6 rounded-xl shadow-md">
-            <h2 className="text-lg font-semibold mb-4">
+          {/* COMMENTS */}
+          <div className="
+            bg-[#1e293b]/70
+            backdrop-blur-md
+            border border-white/10
+            p-6 rounded-xl shadow-lg
+          ">
+            <h2 className="text-lg font-semibold mb-4 text-green-400">
               Comments
             </h2>
 
-            <div className="space-y-3 max-h-[300px] overflow-y-auto">
+            <div className="space-y-3 max-h-[300px] overflow-y-auto pr-1">
+
               {loading ? (
                 <p className="text-gray-400 text-sm">Loading...</p>
               ) : comments.length === 0 ? (
-                <p className="text-gray-400 text-sm">
-                  No comments yet
-                </p>
+                <p className="text-gray-400 text-sm">No comments yet</p>
               ) : (
                 comments.map((c) => (
                   <div
                     key={c._id}
-                    className="bg-gray-100 p-3 rounded-lg text-sm"
+                    className="
+                      bg-[#0f172a]
+                      border border-white/10
+                      p-3 rounded-lg text-sm
+                      hover:bg-[#111827]
+                      transition
+                    "
                   >
                     {c.text}
                   </div>
                 ))
               )}
+
             </div>
           </div>
 

@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BounceCards from "../components/BounceCards";
-import Navbar from "../components/Navbar"
+import Navbar from "../components/Navbar";
+import ConfirmDeleteModal from "../components/ConfirmDeleteModal";
 import {
   getWorkspaces,
   createWorkspace
 } from "../workspaceService";
+import API from "../api";
 
 const Workspace = () => {
   const [workspaces, setWorkspaces] = useState([]);
@@ -13,14 +15,17 @@ const Workspace = () => {
   const [name, setName] = useState("");
   const [emails, setEmails] = useState("");
 
+  // 🔥 DELETE STATE
+  const [openDelete, setOpenDelete] = useState(null);
+
   const navigate = useNavigate();
 
   const images = [
-    "https://plus.unsplash.com/premium_photo-1661521272287-692fdc99db74?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGVvcGxlJTIwd3Jva2lubmclMjB3aXRoJTIwdGhlJTIwbGFwdG9wfGVufDB8fDB8fHww",
-    "https://plus.unsplash.com/premium_photo-1690303193705-eec163806599?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cGVvcGxlJTIwd3Jva2lubmclMjB3aXRoJTIwdGhlJTIwbGFwdG9wfGVufDB8fDB8fHww",
-    "https://media.istockphoto.com/id/2233472302/photo/business-team-analyzing-data-on-laptop-with-charts-and-graphs-selective-focus.webp?a=1&b=1&s=612x612&w=0&k=20&c=IkOhX2Ha3ovhmfXKXmA5G6NoFKb2GUo_zNv_uFj3EXw=",
+    "https://plus.unsplash.com/premium_photo-1661521272287-692fdc99db74?w=500",
+    "https://plus.unsplash.com/premium_photo-1690303193705-eec163806599?w=500",
+    "https://media.istockphoto.com/id/2233472302/photo/business-team-analyzing-data.webp",
     "https://picsum.photos/700/700?grayscale",
-    "https://plus.unsplash.com/premium_photo-1690303193705-eec163806599?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cGVvcGxlJTIwd3Jva2lubmclMjB3aXRoJTIwdGhlJTIwbGFwdG9wfGVufDB8fDB8fHww"
+    "https://plus.unsplash.com/premium_photo-1690303193705-eec163806599?w=500"
   ];
 
   const transformStyles = [
@@ -51,9 +56,19 @@ const Workspace = () => {
     setEmails("");
   };
 
+  // 🔥 DELETE FUNCTION
+  const handleDeleteWorkspace = async (id) => {
+    try {
+      await API.delete(`/workspaces/${id}`);
+      setWorkspaces(workspaces.filter((w) => w._id !== id));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <div className="min-h-screen">
-      <Navbar/>
+      <Navbar />
 
       {/* HERO */}
       <section className="relative h-[350px] flex items-center justify-center text-center text-white overflow-hidden">
@@ -73,7 +88,7 @@ const Workspace = () => {
         </div>
       </section>
 
-      {/* ✅ Bounce Cards */}
+      {/* Bounce Cards */}
       <div className="flex justify-center mt-10">
         <BounceCards
           images={images}
@@ -88,11 +103,11 @@ const Workspace = () => {
       </div>
 
       {/* TITLE */}
-      <h1 className=" text-center m-10 text-3xl md:text-5xl font-semibold leading-tight">
+      <h1 className="text-center m-10 text-3xl md:text-5xl font-semibold leading-tight">
         Create Your Own<br /> Workspaces
       </h1>
 
-      {/* WORKSPACE GRID */}
+      {/* GRID */}
       <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8 mb-6">
 
         {/* ADD NEW */}
@@ -104,12 +119,12 @@ const Workspace = () => {
           <button>New workspace</button>
         </div>
 
-        {/* LIST */}
+        {/* WORKSPACES */}
         {workspaces.map((ws) => (
           <div
             key={ws._id}
             onClick={() => navigate(`/projects/${ws._id}`)}
-            className="bg-blue-500 rounded-2xl p-6 cursor-pointer hover:bg-blue-400"
+            className="bg-blue-500 rounded-2xl p-6 cursor-pointer hover:bg-blue-400 relative"
           >
             <h2 className="text-white text-xl font-bold">
               {ws.name}
@@ -118,11 +133,30 @@ const Workspace = () => {
             <p className="text-white mt-2">
               {ws.members.length} members
             </p>
+
+            {/* 🔥 DELETE BUTTON */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setOpenDelete(ws._id);
+              }}
+              className="absolute bottom-9 right-4 bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-full text-sm"
+            >
+              Delete
+            </button>
           </div>
         ))}
+
       </div>
 
-      {/* MODAL */}
+      {/* 🔥 DELETE MODAL */}
+      <ConfirmDeleteModal
+        isOpen={!!openDelete}
+        onClose={() => setOpenDelete(null)}
+        onConfirm={() => handleDeleteWorkspace(openDelete)}
+      />
+
+      {/* CREATE MODAL */}
       {showModal && (
         <div className="fixed inset-0 bg-black/30 flex items-center justify-center">
           <div className="bg-white p-6 rounded-xl w-[400px]">

@@ -176,7 +176,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-4 gap-10">
 
           <div>
-            <h2 className="text-white text-xl font-semibold">TechNova</h2>
+            <h2 className="text-white text-xl font-semibold">Flowtrack</h2>
             <p className="mt-4 text-sm text-gray-400">
               Building the future with powerful and intuitive tools.
             </p>
@@ -212,7 +212,7 @@ const Home = () => {
         </div>
 
         <div className="border-t border-gray-800 text-center text-sm py-6 text-gray-500">
-          © 2026 TechNova. All rights reserved.
+          © 2026 Flowtrack. All rights reserved.
         </div>
       </footer>
     </div>

@@ -4,6 +4,7 @@ import {
   getTasks,
   updateTaskStatus
 } from "../controller/taskController.js";
+import { deleteTask } from "../controller/taskController.js";
 
 import { protect } from "../middleware/authMiddleware.js";
 
@@ -12,5 +13,7 @@ const router = express.Router();
 router.post("/", protect, createTask);
 router.get("/:projectId", protect, getTasks);
 router.patch("/:id/status", protect, updateTaskStatus);
+
+router.delete("/:id",protect, deleteTask);
 
 export default router;
