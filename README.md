@@ -5,6 +5,8 @@ Flowtrack is a modern full-stack task and project management platform designed t
 🌐 Live Demo
 Frontend: https://flowtrack-fawn.vercel.app
 Backend: https://flowtrack-backend-fsrq.onrender.com
+
+
 ✨ Features
 🔐 Authentication
 User registration & login (JWT-based)
@@ -27,6 +29,8 @@ Cascade deletion (projects → tasks)
 Clean, responsive design
 Dark-themed dashboard
 Interactive components
+
+
 🛠️ Tech Stack
 Frontend
 React (Vite)
@@ -42,6 +46,9 @@ Deployment
 Frontend: Vercel
 Backend: Render
 Database: MongoDB Atlas
+
+
+
 📂 Project Structure
 flowtrack/
 │
@@ -58,17 +65,24 @@ flowtrack/
 │   ├── routes/
 │   ├── middleware/
 │   └── server.js
+
+
 ⚙️ Environment Variables
 Backend (.env)
 MONGO_URI=your_mongodb_connection
 JWT_SECRET=your_secret_key
 PORT=5000
+
+
 📈 Future Improvements
 🔔 Real-time notifications (Socket.io)
 👤 User avatars & profiles
 📊 Analytics dashboard
 📱 Mobile responsiveness improvements
 🌙 Theme switch (light/dark toggle)
+
+
+
 👨‍💻 Author
 JAGADEESH_KONDAKA
 ⭐ Show your support
