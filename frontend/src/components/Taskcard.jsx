@@ -15,19 +15,19 @@ const TaskCard = ({ task }) => {
     <div
       ref={setNodeRef}
       style={style}
-      className="bg-gray-100 p-4 rounded-lg shadow"
+      className="bg-white p-4 rounded-lg shadow"
     >
       {/* DRAG HANDLE */}
       <div
         {...listeners}
         {...attributes}
-        className="cursor-grab text-xs text-gray-400 mb-2"
+        className="cursor-grab text-xs text-black mb-2"
       >
         drag
       </div>
 
-      <h3 className="font-medium">{task.title}</h3>
-      <p className="text-sm text-gray-500">{task.description}</p>
+      <h3 className="text-xl ">{task.title}</h3>
+      <p className="text-lg  text-gray-500">{task.description}</p>
     </div>
   );
 };

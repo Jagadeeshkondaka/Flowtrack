@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import API from "../api";
+import Navbar from "../components/Navbar";
+import Folder from "../components/Folder";
 
 const Dashboard = () => {
   const { workspaceId } = useParams();
@@ -43,7 +45,8 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-8 py-10">
+    <div className="min-h-screen bg-gray-200">
+      <Navbar/>
     <section class="relative flex flex-col items-center justify-center text-center py-24 px-6 
       bg-gradient-to-b from-black via-[#0a0a0f] to-[#111827] overflow-hidden">
 
@@ -64,13 +67,41 @@ const Dashboard = () => {
       font-medium shadow-lg hover:scale-105 transition">
       Get Started →
     </button>
-
-    
-    <div class="absolute w-[500px] h-[500px] bg-purple-700/20 blur-[120px] rounded-full bottom-0"></div>
+      
 
   </section>
+  <section className="bg-gray-200 py-32 px-6 border-b border-black">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-around gap-2">
+
+        {/* LEFT SIDE TEXT */}
+        <div className="max-w-lg">
+          <h1 className="text-6xl font-bold text-gray-900 leading-tight">
+            Manage your Projects smarter
+          </h1>
+
+          <p className="mt-4 text-gray-600 text-lg">
+            Organize projects, Create projects, and collaborate seamlessly —
+            all in one powerful dashboard.
+          </p>
+        </div>
+
+        {/* RIGHT SIDE FOLDER */}
+        <div className="flex justify-center items-center py-10">
+          <Folder
+            size={2.5}
+            color="#7C3AED"
+            items={[
+              <div className="p-2 text-sm">Files</div>,
+              <div className="p-2 text-sm">Tasks</div>,
+              <div className="p-2 text-sm">Projects</div>,
+            ]}
+          />
+        </div>
+
+      </div>
+    </section>
     <h1 className=" text-center m-10 text-3xl md:text-5xl font-semibold leading-tight">
-          Create Your Own<br /> Workspaces
+          Create and Manage Your Own<br /> <span className="text-purple-600">Projects</span>
     </h1>
 
       {/* HEADER */}

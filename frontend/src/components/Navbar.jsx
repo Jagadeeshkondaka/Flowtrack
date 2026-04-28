@@ -16,11 +16,11 @@ const Navbar = () => {
           ⚙️ Flowtrack
         </h1>
 
-        <div className="hidden md:flex gap-8 text-sm text-gray-300">
-          <button className="hover:text-white cursor-pointer" onClick={()=>navigate("/workspace")}>Workpsaces</button>
-          <button className="hover:text-white cursor-pointer">Projects</button>
-          <button className="hover:text-white cursor-pointer">Tasks</button>
-          <button className="hover:text-white cursor-pointer">About us</button>
+        <div className="hidden md:flex gap-8 text-sm text-gray-900">
+          <button className="hover:text-black hover:text-lg border-b border-blue-600 cursor-pointer" onClick={()=>navigate("/workspace")}>Workpsaces</button>
+          <button className="hover:text-black hover:text-lg border-b border-blue-600 cursor-pointer">Projects</button>
+          <button className="hover:text-black hover:text-lg border-b border-blue-600 cursor-pointer">Tasks</button>
+          <button className="hover:text-black hover:text-lg border-b border-blue-600 cursor-pointer">About us</button>
         </div>
 
           {!token ? (

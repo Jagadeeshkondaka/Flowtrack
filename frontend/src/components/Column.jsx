@@ -9,9 +9,9 @@ const Column = ({ status, tasks }) => {
   return (
     <div
       ref={setNodeRef}
-      className="bg-white p-4 rounded-xl border min-h-[400px]"
+      className="bg-purple-600 p-4 rounded-xl border min-h-[400px]"
     >
-      <h2 className="font-semibold mb-4 capitalize">{status}</h2>
+      <h2 className="font-semibold text-white text-2xl text-center border-b mb-4 capitalize">{status}</h2>
 
       <div className="space-y-3">
         {filtered.map((task) => (
