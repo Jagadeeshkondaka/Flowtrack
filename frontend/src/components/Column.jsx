@@ -1,5 +1,5 @@
 import { useDroppable } from "@dnd-kit/core";
-import TaskCard from "./TaskCard";
+import TaskCard from "./Taskcard";
 
 const Column = ({ status, tasks, refreshTasks }) => {
   const { setNodeRef } = useDroppable({ id: status });
